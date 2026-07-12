@@ -3,12 +3,13 @@ import { prisma } from '@/lib/prisma'
 import { EstadoBadge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdminsPage() {
   const admins = await prisma.admin.findMany({
     orderBy: { createdAt: 'desc' },
     select: { id: true, nombre: true, usuario: true, email: true, estado: true, createdAt: true },
   })
-
   return (
     <main className="mx-auto max-w-5xl px-6 py-12">
       <div className="mb-8 flex items-center justify-between">
