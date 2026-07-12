@@ -10,3 +10,21 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  nombre    String
+  usuario   String   @unique
+  email     String?  @unique
+  clave     String
+  estado    Estado   @default(ACTIVO)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("admins")
+}
+
+enum Estado {
+  ACTIVO
+  INACTIVO
+}
